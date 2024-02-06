@@ -18,15 +18,17 @@ int checkAnagram(char ana1[], char ana2[], FILE *out){
     }
 
 
-    //copies letters only to letters1 and letters2 from ana1 and ana2
+    //copies letters only from ana1 to letters1
     for (int i = 0, j = 0; i < sizeof(letters1); i++){
 
+        //checks and copies lower case letters
         if (ana1[i] >= 'a' && ana1[i] <= 'z') {
             letters1[j] = ana1[i];
             j++;
 
         } 
 
+        //checks and copies to letters1 and makes them lower case
         else if (ana1[i] >= 'A' && ana1[i] <= 'Z') {
             letters1[j] = (ana1[i] + 32);
             j++;
@@ -40,14 +42,17 @@ int checkAnagram(char ana1[], char ana2[], FILE *out){
 
     }
 
+    //copies letters only from ana2 to letters2
     for (int i = 0, j = 0; i < sizeof(letters2); i++){
 
-        if (ana2[i] >= 'a' && ana2[i] <= 'z') {
+       //checks and copies lower case letters
+       if (ana2[i] >= 'a' && ana2[i] <= 'z') {
             letters2[j] = ana2[i];
             j++;
 
         }
 
+        //checks and copies to letters2 and makes them lower case
         else if (ana2[i] >= 'A' && ana2[i] <= 'Z') {
             letters2[j] = (ana2[i] + 32);
             j++;
@@ -66,21 +71,7 @@ int checkAnagram(char ana1[], char ana2[], FILE *out){
         return 0;
     }
 
-    printf("\nLetters 1\n");
-
-
-    for (int x = 0; x < sizeof(letters1); x++){
-        printf("%c", letters1[x]);
-    }
-    printf("\nLetters 2\n");
-
-    for (int x = 0; x < sizeof(letters2); x++){
-        printf("%c", letters2[x]);
-    }
-    printf("\n");
-
-
-
+    //checks if letters1 and letters2 have same letters and gets rid of them from both arrays
     for (int position1 = 0; position1 < sizeof(letters1); position1++){
         for (int position2 = 0; position2 < sizeof(letters2); position2++){
 
@@ -91,18 +82,8 @@ int checkAnagram(char ana1[], char ana2[], FILE *out){
             }
         }
     }
-    printf("\nLetters 1\n");
 
-    for (int x = 0; x < sizeof(letters1); x++){
-        printf("%c", letters1[x]);
-    }
-    printf("\nLetters 2\n");
-
-    for (int x = 0; x < sizeof(letters2); x++){
-        printf("%c", letters2[x]);
-    }
-    printf("\n");
-
+    //checks if letters1 and letters2 are anagrams
     for (int i = 0; i < sizeof(letters1); i++){
 
         if ((letters1[i] >= 'a' && letters1[i] <= 'z' ) || (letters2[i] >= 'a' && letters2[i] <= 'z' )){
@@ -131,13 +112,8 @@ int main(int argsc, char *argv[]){
         fputs("Error. One or both of the strings are NULL", output);
         return 0;
     }
-    
 
-    if (checkAnagram(buffer, buffer2, output) > 0){
-        printf("success\n");
-    } else {
-        printf("failure\n");
-    }
+    checkAnagram(buffer, buffer2, output);
 }
 
 
