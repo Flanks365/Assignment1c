@@ -22,9 +22,6 @@ jobs:
           distribution: 'temurin'
           java-version: '11'  # Use the Java version your project requires
 
-      - name: Build with Maven
-        run: mvn clean package -DskipTests=true
-
       - name: Compile Java Files in Class Folder
         run: |
           cd ./apache-tomcat-10.1.28/webapps/trivia/WEB-INF/classes  # Use relative path to the class folder
